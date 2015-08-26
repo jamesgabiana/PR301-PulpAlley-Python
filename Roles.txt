@@ -1,0 +1,9 @@
+leader Kim Jong-un, d10, 3d8, 3d10, 3d10, 2d8, 3d10, 2d10, Sharp, Deadeye, Agile
+
+sidekick James, d8, 3d8, 3d8, 3d8, 2d6, 2d6, 2d6, Sharp, Deadeye
+
+ally James, d6, 2d6, 2d6, 1d6, 1d6, 1d6, 1d6, animal
+
+follower James, d6*, 1d6, 1d6, 1d6, 1d6, 1d6, 1d6, animal
+
+display
