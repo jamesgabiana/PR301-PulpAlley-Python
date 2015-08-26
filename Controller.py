@@ -145,10 +145,10 @@ by the attributes and skills
         try:
             if f_name == "":
                 raise InvalidInput("Please enter the name of the "
-                                    "file. eg. load <file_name>")
+                                   "file. eg. load <file_name>")
             if os.path.exists(f_name + ".pickle") is False:
                 raise InvalidInput("The file \"" + f_name +
-                                        "\" does not exist")
+                                   "\" does not exist")
             with open(f_name + ".pickle", "rb") as file:
                 data = pickle.load(file)
             self.league = data[0]

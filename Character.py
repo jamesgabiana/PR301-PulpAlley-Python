@@ -23,25 +23,25 @@ class Character:
         self.cunning = cunning
 
     def get_skill(self, skill):
-        # for x, value in Ability.level1.items():
-        #     if x.lower() == skill.lower():
-        #         return value
-        # for x, value in Ability.level2.items():
-        #     if x.lower() == skill.lower():
-        #         return value
-        # for x, value in Ability.level3.items():
-        #     if x.lower() == skill.lower():
-        #         return value
-        for (x, x_val), (y, y_val), (z, z_val) in \
-                zip_longest(Ability.level1.items(),
-                            Ability.level2.items(),
-                            Ability.level3.items()):
-            if x is not None and x.lower() == skill.lower():
-                return x_val
-            if y is not None and y.lower() == skill.lower():
-                return y_val
-            if z is not None and z.lower() == skill.lower():
-                return z_val
+        # better way?
+        level_dict = [Ability.level1,
+                      Ability.level2, Ability.level3]
+        for dic in level_dict:
+            for x, value in dic.items():
+                if x.lower() == skill.lower():
+                    return value
+
+        # bad way?
+        # for (x, x_val), (y, y_val), (z, z_val) in \
+        #         zip_longest(Ability.level1.items(),
+        #                     Ability.level2.items(),
+        #                     Ability.level3.items()):
+        #     if x is not None and x.lower() == skill.lower():
+        #         return x_val
+        #     if y is not None and y.lower() == skill.lower():
+        #         return y_val
+        #     if z is not None and z.lower() == skill.lower():
+        #         return z_val
 
     def more_skills(self):
         skills = ""
