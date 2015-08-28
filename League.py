@@ -1,6 +1,5 @@
 import Character
 import re
-import sys
 from Ability import Ability, Dice
 from View import View
 
@@ -738,7 +737,7 @@ class InvalidAction(Exception):
         self.info = info
 
     def __str__(self):
-        return "Invalid Action: " + self.info
+        return
 
 
 class InvalidInput(Exception):

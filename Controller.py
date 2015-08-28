@@ -36,6 +36,7 @@ class Controller(cmd.Cmd):
         included for those wanting to jump straight into
         the action.
 
+
         """
         self.league.start_create(line)
 
@@ -57,7 +58,6 @@ by the attributes and skills
         e.g leader Kim Jong-un, d10, 3d8, 3d10, 3d10, 2d8, 3d10, \
 2d10, Sharp, Deadeye, Agile
         """
-
         self.league.add_leader(line)
 
     def do_sidekick(self, line):
@@ -106,7 +106,8 @@ by the attributes and skills
 
         type "follower <attributes>" to create follower followed \
 by the attributes and skills
-        eg follower Wolfeschlegelsteinhausenbergerdorff, d6*, 1d6, 1d6, 1d6, 1d6, 1d6, 1d6, animal
+        eg follower Wolfeschlegelsteinhausenbergerdorff, d6*, 1d6, 1d6, 1d6, \
+1d6, 1d6, 1d6, animal
         """
         self.league.add_follower(line)
 
@@ -600,6 +601,36 @@ class MainTest(unittest.TestCase):
                 self.assertTrue(league.follower_members["follower1"].finesse ==
                                 "2d6")
             initialized()
+
+    def test_23load(self):
+        pass
+        # happy day
+        Controller.do_load(league, "avengers")
+        self.assertEqual(league.league.leader.name, "James")
+        self.assertEqual(league.league.leader.health, "d10")
+        self.assertEqual(league.league.leader.brawl, "3d8")
+        self.assertEqual(league.league.leader.shoot, "3d10")
+        self.assertEqual(league.league.leader.dodge, "4d10")
+        self.assertEqual(league.league.leader.might, "2d8")
+        self.assertEqual(league.league.leader.finesse, "3d10")
+
+        #bad day
+        self.assertRaises(InvalidInput, Controller.do_load(league,
+                                                           "asd$%^&*("))
+        self.assertRaises(InvalidInput, Controller.do_load(league, ""))
+
+        #alternative, load it again
+        Controller.do_load(league, "avengers")
+        self.assertEqual(str(league.league.leader),
+                         "+-------+------+-------+------+------+------+------+--------+--------+\n"
+                         "|       |name  |health |brawl |shoot |dodge |might |finesse |cunning |\n"
+                         "+-------+------+-------+------+------+------+------+--------+--------+\n"
+                         "|Leader |James |d10    |3d8   |3d10  |4d10  |2d8   |3d10    |2d10    |\n"
+                         "+-------+------+-------+------+------+------+------+--------+--------+\n"
+                         "Sharp: Once per turn, this character may re-roll one Shoot or Finesse die.\n"
+                         "Deadeye: This character is not limited to shooting the closest enemy\n"
+                         "Agile: This character's Dodge is increased by +1 die.")
+
 
 
 def cmd_switch():

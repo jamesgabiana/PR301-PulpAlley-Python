@@ -56,7 +56,8 @@ class Character:
         return skills
 
     def __str__(self):
-        return TableMaker.table_maker(self.__class__.__name__, self.name,
+        return TableMaker.table_maker(False, self.__class__.__name__,
+                                      self.name,
                                       self.health, self.brawl,
                                       self.shoot, self.dodge, self.might,
                                       self.finesse, self.cunning) + "\n"\
